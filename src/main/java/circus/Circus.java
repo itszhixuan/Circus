@@ -4,9 +4,13 @@ import circus.animal.Animal;
 import circus.animal.Duck;
 import circus.animal.Parrot;
 import circus.animal.Tiger;
+import circus.animal.Elephant;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -41,8 +45,34 @@ public class Circus {
     }
 
     public static void main(String[] args) {
+        System.out.println("Number of animals: " + animals.length);
         makeAnimalsTalk();
         System.out.println("Total value of animals " + calculateAssetValue(animals));
         System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+
+        //animals[3] = new Parrot("Dolly");
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals)); //asList takes whatever you pass inside
+
+        Duck louis = new Duck("Louis");
+        Parrot andy = new Parrot("Andy");
+        Elephant strongOne = new Elephant("Strong One");
+        animalArrayList.add(louis);
+        animalArrayList.add(andy);
+        animalArrayList.add(strongOne);
+        printAllAnimals(animalArrayList);
+
+        System.out.println("number of animals: " + animalArrayList.size());
+
+        System.out.println("Louis is at :" + animalArrayList.indexOf(louis));
+        animalArrayList.sort(Animal.AnimalNameComparator);
+
+        printAllAnimals(animalArrayList);
     }
+
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a: animalArrayList) {
+            System.out.println(a);
+        }
+    }
+
 }
